@@ -1,43 +1,36 @@
 package Course.entities.concretes;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name="Language")
+@Table(name="framework")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Course {
-	
-	
+public class FrameWork {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="language_id")
+	@Column(name="frame_id")
 	private int id;
 	
-	@Column(name="language_name")
+	@Column(name="frame_name")
 	private String name;
 	
 	
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<FrameWork> framework;
+	@ManyToOne
+	@JoinColumn(name="course_id")
+	private Course course;
 	
-	
-	
-
 
 }
